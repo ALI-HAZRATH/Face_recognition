@@ -1,0 +1,31 @@
+import face_recognition
+
+# Load known face images (Use raw string to avoid path issues)
+image_of_person1 = face_recognition.load_image_file(r"C:\Users\HP\Desktop\Face Recoganition\image\ALI ASRATH.jpg")
+image_of_person2 = face_recognition.load_image_file(r"C:\Users\HP\Desktop\Face Recoganition\image\anshad_img.jpg")  # New person
+image_of_person3 = face_recognition.load_image_file(r"C:\Users\HP\Desktop\Face Recoganition\image\aravind.jpg")
+
+# Print image dimensions (Optional)
+print("Image 1 Shape:", image_of_person1.shape)
+print("Image 2 Shape:", image_of_person2.shape)
+print("Image 3 Shape:", image_of_person3.shape)
+
+# Encode faces (Avoid crash if no face found)
+encodings1 = face_recognition.face_encodings(image_of_person1)
+encodings2 = face_recognition.face_encodings(image_of_person2)
+encodings3 = face_recognition.face_encodings(image_of_person3)
+
+if encodings1 and encodings2 and encodings3:
+    person1_encoding = encodings1[0]
+    person2_encoding = encodings2[0]
+    person3_encoding = encodings3[0]
+else:
+    print("❌ Error: One or more faces could not be encoded.")
+    exit()
+
+# Store face encodings and names
+known_face_encodings = [person1_encoding, person2_encoding,person3_encoding]
+known_face_names = ["ALIASRATH", "ANSHAD","ARAVIND"]
+
+print("✅ Face encoding completed successfully!")
+
